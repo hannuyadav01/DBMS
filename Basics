@@ -1,0 +1,55 @@
+1.  What is a database schema?
+    Think of a schema as the blueprint of your database — like a map showing what tables exist, what columns each table has, and how tables relate to each other.
+    Why it matters: Without a schema, your database is just random data. With it, everyone (developers, admins) understands the structure clearly.
+    Interview tip
+    Analogy: Schema is like a house blueprint — it defines the rooms (tables), what goes in them (columns), and how they connect (relationships).
+
+2.  Primary key vs Foreign key?
+    Primary Key : Uniquely identifies each row in a table. No duplicates, no NULLs. One per table.
+    Foreign Key : A column that points to the primary key of another table. Creates a link (relationship) between two tables.
+    Example: In an Orders table, user_id is a foreign key referencing the id (primary key) in the Users table.
+
+3.  What are CRUD operations?
+    Create   INSERT INTO table VALUES (...)
+    Read     SELECT * FROM table WHERE ...
+    Update   UPDATE table SET col=val WHERE ...
+    Delete   DELETE FROM table WHERE ...
+
+4.  Types of JOINs — explained simply
+    INNER JOIN  Only rows that match in BOTH tables
+    LEFT JOIN   All rows from left table + matched from right (NULLs for no match)
+    RIGHT JOIN  All rows from right table + matched from left (NULLs for no match)
+    FULL JOIN   All rows from both tables (NULLs wherever no match)
+
+5.  What are ACID properties?
+    ACID ensures your database transactions are reliable and safe.
+
+    Atomicity     All or nothing — if one step fails, whole transaction rolls back
+    Consistency   Database always goes from one valid state to another
+    Isolation     Two transactions don't interfere with each other
+    Durability    Once committed, data is saved even if system crashes
+    Real example: Bank transfer — debit one account AND credit another. If credit fails, debit must also be reversed (Atomicity).
+
+6.  OLTP vs OLAP — what's the difference?
+    OLTP   Day-to-day transactions (insert/update/delete). Fast, short operations. Example: Amazon orders
+    OLAP   Analysis & reporting on large data. Slow, complex queries. Example: Sales dashboards, data warehouses
+
+7.  Relational (SQL) vs NoSQL — key differences
+    Relational (SQL) :  Tables with fixed schema, ACID compliant, great for structured data. e.g. MySQL, PostgreSQL
+    NoSQL            :  Flexible schema, handles unstructured data, scales horizontally. e.g. MongoDB, Redis, Cassandra
+
+8.  What is data normalization?
+    Normalization = organizing your database to avoid repeating data and keep it consistent.
+
+    1NF  Each cell has one value only (no lists in a cell)
+    2NF  Every column depends on the whole primary key
+    3NF  Every column depends only on the primary key (no indirect dependencies)
+
+9.  Common SQL aggregate functions
+    SUM() — total of a column
+    AVG() — average value
+    COUNT() — number of rows
+    MIN() — smallest value
+    MAX() — largest value
+    Used with GROUP BY to aggregate data per group.
+
