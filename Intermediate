@@ -1,0 +1,40 @@
+1.  How to optimize slow database queries?
+    Add indexes        On columns used in WHERE, JOIN, ORDER BY
+    Avoid SELECT *     Only fetch the columns you need
+    Use EXPLAIN        See how the DB is executing your query — find bottlenecks
+    Simplify queries   Break complex queries into simpler parts
+    Archive old data   Keep tables lean by removing unused records
+
+2.  What are indexes and why do they matter?
+    An index is like the index at the back of a textbook — instead of reading every page to find a topic, you jump straight to it.
+    Without an index, the DB scans every row (full table scan). With an index, it jumps directly to matching rows. 
+    Tradeoff: faster reads, but slower writes and more storage.
+
+3.  What are stored procedures?
+    A stored procedure is a saved SQL script stored inside the database. Instead of writing the same SQL again and again, 
+    you call the procedure by name.
+    Benefits    Reusable, faster (precompiled), more secure, reduces network calls
+    Use when    Complex business logic, batch jobs, repeated operations
+
+4.  What are window functions?
+    Window functions let you do calculations across rows related to the current row — without collapsing them into one row like GROUP BY does.
+    RANK()            Rank employees by salary within their department
+    SUM() OVER        Running total of sales day by day
+    LAG() / LEAD()    Compare current row with previous or next row
+
+5.  Normalization vs Denormalization
+    Normalization      Split data into multiple tables to remove redundancy. Great for writes.
+    Denormalization    Merge tables together for faster reads. Accept some data duplication. Used in analytics/reporting.
+    normalization = data integrity                 denormalization = read speed.
+
+6.  How to handle missing (NULL) data in SQL?
+    COALESCE(a, b)           Returns first non-NULL value. e.g. COALESCE(salary, 0)
+    IS NULL / IS NOT NULL    Check for NULLs in WHERE clause
+    ISNULL()                 SQL Server specific — replaces NULL with a value
+
+7.  What is table partitioning?
+    Partitioning = splitting a large table into smaller physical pieces while it still looks like one table to users.
+    Horizontal    Split by rows — e.g. orders from 2023 in one partition, 2024 in another
+    Vertical      Split by columns — frequently used columns separate from rarely used ones
+    Range         By value range — common for dates
+    Hash          Evenly distribute rows using a hash function
