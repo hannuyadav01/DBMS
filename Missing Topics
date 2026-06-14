@@ -1,0 +1,46 @@
+1.  Subqueries vs JOINs — when to use which?
+    A subquery is a query inside another query. A JOIN combines tables side by side.
+    Subquery    Use when result of inner query feeds outer query. e.g. WHERE salary > (SELECT AVG(salary) FROM employees)
+    JOIN        Use to combine columns from multiple tables. Generally faster than subquery.
+
+2.  GROUP BY vs HAVING — the confusion
+    WHERE       Filters rows BEFORE grouping
+    GROUP BY    Groups rows with same value together
+    HAVING      Filters groups AFTER grouping (like WHERE but for aggregates)
+    Example: Find departments with more than 5 employees → GROUP BY dept HAVING COUNT(*) > 5
+
+3.  SQL query execution order
+    SQL doesn't execute in the order you write it. The actual order is:
+    1. FROM
+    2. JOIN
+    3. WHERE
+    4. GROUP BY
+    5. HAVING
+    6. SELECT
+    7. ORDER BY
+    8. LIMIT
+
+4.  Transactions — COMMIT, ROLLBACK, SAVEPOINT
+    BEGIN        Start a transaction
+    COMMIT       Save all changes permanently
+    ROLLBACK     Undo all changes in this transaction
+    SAVEPOINT    Set a point you can rollback to partially
+
+5.  Difference: DELETE vs TRUNCATE vs DROP
+    DELETE      Removes specific rows. Can be rolled back. Triggers fire. Slow on large tables.
+    TRUNCATE    Removes ALL rows. Faster. Cannot be rolled back (in most DBs). No triggers.
+    DROP        Deletes the entire table structure + data. Permanent.
+
+6.  What is the N+1 query problem?
+    When you run 1 query to get N records, then N more queries for each record — totalling N+1 queries. This kills performance.
+    Example: Fetch 100 users, then for each user fetch their orders = 101 queries. Fix: use a JOIN to get all data in 1 query.
+
+7.  Views vs Materialized Views
+    View                 A virtual table — just a saved query. Runs the query fresh every time.
+    Materialized View    Stores the query result physically. Much faster reads but needs refreshing when data changes.
+
+8.  What is a deadlock and how do you prevent it?
+    A deadlock happens when two transactions each hold a lock the other needs — and both wait forever.
+    Example: Transaction A locks row 1, needs row 2. Transaction B locks row 2, needs row 1. Standoff!
+    Prevention  -   Always lock resources in the same order. Keep transactions short. Use timeouts.
+
