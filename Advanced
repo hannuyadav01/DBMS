@@ -1,0 +1,32 @@
+1.  How to design a scalable database?
+    Sharding               Split data across multiple DB servers (e.g. users A-M on server 1, N-Z on server 2)
+    Read replicas          Master handles writes, replicas handle reads — reduces load
+    Caching                Use Redis/Memcached to serve frequent reads without hitting DB
+    NoSQL when needed      For certain data types (sessions, logs), NoSQL scales better
+
+2.  What is data replication?
+    Replication = copying data from one DB server to one or more others automatically and continuously.
+    Why?               High availability (if one server dies, others take over), load balancing, disaster recovery
+    Master-Slave       One master handles writes, slaves sync and handle reads
+    Master-Master      Multiple masters can accept writes — more complex but more resilient
+
+3.  NoSQL database types and when to use them
+    Document (MongoDB)      Store JSON-like docs. Good for user profiles, content
+    Key-Value (Redis)       Super fast lookups. Good for caching, sessions
+    Column (Cassandra)      Time-series, real-time analytics
+    Graph (Neo4j)           Relationships-heavy data — social networks, recommendations
+
+4.  What is ETL?
+    ETL = Extract, Transform, Load — a pipeline to move data from multiple sources into a data warehouse.
+    Extract       Pull data from sources (databases, APIs, files)
+    Transform     Clean it, fix formats, remove duplicates, apply business rules
+    Load          Push the clean data into the target warehouse
+
+5.  Database security best practices
+    Encrypt data at rest (AES)
+    Encrypt in transit (TLS/SSL)
+    Least privilege access
+    Role-based access control
+    Audit logs
+    Data masking in dev/staging
+    Regular backups
