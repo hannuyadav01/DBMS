@@ -1,0 +1,24 @@
+1.  How to diagnose a slow query?
+    Step 1    Run EXPLAIN / EXPLAIN ANALYZE to see the query plan
+    Step 2    Look for full table scans (missing indexes)
+    Step 3    Check if SELECT * is fetching unnecessary columns
+    Step 4    Look for N+1 query problems (loop making DB calls)
+    Step 5    Add indexes, simplify JOINs, or cache the result
+
+2.  How to design a DB for an e-commerce app?
+    Tables needed    Users, Products, Orders, Order_Items, Payments, Reviews
+    Indexes          On user_id, product_id, created_at (most queried fields)
+    Caching          Redis for product catalog & sessions
+    Scale            Sharding by user region, read replicas for product browsing
+
+3.  How to handle backup & recovery?
+    Full backup               Complete snapshot of the entire database
+    Incremental backup        Only changes since last backup — faster, less storage
+    Point-in-time recovery    Restore DB to any specific moment (using transaction logs)
+    Geo-redundancy            Store backups in different locations/cloud regions
+
+4.  How to secure sensitive data in a DB?
+    Hashing passwords     Never store plain text — use bcrypt or SHA-256
+    Encryption            Encrypt PII fields like SSN, bank details using AES-256
+    Data masking          Show **** instead of real values in non-production
+    Access control        Only give users the minimum permissions they need
